@@ -26,7 +26,7 @@ public class AudioManager {
     }
 
     public interface AudioStateListener{
-        void wellPrepared();
+        void wellPrepared();    // 准备好录音
     }
 
     public AudioStateListener mListener;

@@ -1,5 +1,6 @@
 package com.xwc.wxvoicetest;
 
+import android.Manifest;
 import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
@@ -8,6 +9,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.PermissionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +35,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getPermission();
 
         mListView = findViewById(R.id.list_recorder);
         mAudioRecorderButton = findViewById(R.id.btn_recorder);
@@ -68,6 +73,26 @@ public class MainActivity extends Activity {
                 });
             }
         });
+    }
+
+    private void getPermission() {
+        if (PermissionUtils.isGranted(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO)) {
+
+        } else {
+            PermissionUtils.permission(PermissionConstants.STORAGE, PermissionConstants.MICROPHONE)
+                    .callback(new PermissionUtils.FullCallback() {
+                        @Override
+                        public void onGranted(List<String> permissionsGranted) {
+
+                        }
+
+                        @Override
+                        public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
+                            Toast.makeText(MainActivity.this, "没有权限不能使用", Toast.LENGTH_LONG).show();
+                            finish();
+                        }
+                    });
+        }
     }
 
     @Override
