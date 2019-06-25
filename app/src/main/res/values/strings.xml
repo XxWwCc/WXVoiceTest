@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WXVoiceTest</string>
+    
+    <string name="action_record_normal" translatable="false">按住 说话</string>
+    <string name="action_record_recording" translatable="false">松开 结束</string>
+    <string name="action_want_cancel" translatable="false">松开手机，取消发送</string>
+</resources>
