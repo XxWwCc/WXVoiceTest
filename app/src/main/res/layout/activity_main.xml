@@ -31,6 +31,7 @@
             android:text="@string/action_record_normal"
             android:textColor="#727272"
             android:minHeight="0dp"
+            android:drawableTop="@mipmap/icon_record_sound"
             android:background="@drawable/btn_record_normal"/>
 
         <View
